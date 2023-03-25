@@ -5,4 +5,9 @@ public class NoDataFoundException extends RuntimeException{
 
         super("No data found");
     }
+
+    public NoDataFoundException(String message) {
+
+        super(message);
+    }
 }

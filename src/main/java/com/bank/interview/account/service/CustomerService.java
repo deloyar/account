@@ -23,7 +23,7 @@ public class CustomerService {
     }
 
     public Customer getByID(Long cId){
-        return this.customerRepository.findById(cId).orElseThrow(()->new NoDataFoundException());
+        return this.customerRepository.findById(cId).orElseThrow(()->new NoDataFoundException("Customer not found"));
     }
 
     public List<Customer> getAll() {
