@@ -14,7 +14,7 @@ public class Account {
     private Long id;
     private BigDecimal balance = BigDecimal.ZERO;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
