@@ -1,6 +1,7 @@
 package com.bank.interview.account.requestDto;
 
 
+import com.bank.interview.account.util.AccountType;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -10,11 +11,14 @@ public class AccountCreationRequest {
     private Long customerId;
     @NotNull(message = "Initial credit is required.")
     private BigDecimal initialCredit;
+
+    private AccountType accountType;
     public AccountCreationRequest(){}
 
-    public AccountCreationRequest(Long customerId, BigDecimal initialCredit) {
+    public AccountCreationRequest(Long customerId, BigDecimal initialCredit, AccountType accountType) {
         this.customerId = customerId;
         this.initialCredit = initialCredit;
+        this.accountType = accountType;
     }
 
     public Long getCustomerId() {
@@ -31,5 +35,13 @@ public class AccountCreationRequest {
 
     public void setInitialCredit(BigDecimal initialCredit) {
         this.initialCredit = initialCredit;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 }

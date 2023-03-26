@@ -1,5 +1,6 @@
 package com.bank.interview.account.entity;
 
+import com.bank.interview.account.util.AccountType;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -17,9 +18,12 @@ public class Account {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
+    private AccountType accountType;
+
     public Account(){}
-    public Account(Customer customer) {
+    public Account(Customer customer, AccountType accountType) {
         this.customer = customer;
+        this.accountType = accountType;
     }
 
     public Long getId() {
@@ -46,6 +50,13 @@ public class Account {
         this.customer = customer;
     }
 
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
 
     @Override
     public String toString() {

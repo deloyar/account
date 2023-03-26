@@ -57,7 +57,7 @@ public class AccountService {
             throw new CustomException("Negative Deposit not allowed");
         }
         Customer customer = customerService.getByID(accountCreationRequest.getCustomerId());
-        Account account = accountRepository.save(new Account(customer));
+        Account account = accountRepository.save(new Account(customer, accountCreationRequest.getAccountType()));
         Transaction transaction = null;
         if (accountCreationRequest.getInitialCredit() != null || accountCreationRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
             try {
