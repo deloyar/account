@@ -59,7 +59,7 @@ public class AccountService {
         Customer customer = customerService.getByID(accountCreationRequest.getCustomerId());
         Account account = accountRepository.save(new Account(customer, accountCreationRequest.getAccountType()));
         Transaction transaction = null;
-        if (accountCreationRequest.getInitialCredit() != null || accountCreationRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
+        if (accountCreationRequest.getInitialCredit() != null && accountCreationRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
             try {
                 transaction = transactionService.createTransaction(account.getId(), accountCreationRequest.getInitialCredit());
             } catch (Exception ex) {
