@@ -1,6 +1,8 @@
 package com.bank.interview.account.service;
 
 import com.bank.interview.account.ResponseDto.AccountCreationResponse;
+import com.bank.interview.account.ResponseDto.FullAccountDetailsResponse;
+import com.bank.interview.account.entity.FullAccountDetails;
 import com.bank.interview.account.entity.Account;
 import com.bank.interview.account.entity.Customer;
 import com.bank.interview.account.entity.Transaction;
@@ -32,11 +34,18 @@ public class AccountService {
     }
 
     public Account getAccountFromId(Long id){
+        log.info("fetching account: " + id);
         return accountRepository.findById(id).orElseThrow(() -> new NoDataFoundException("Account not found"));
     }
 
+    public FullAccountDetailsResponse getFullAccountFromId(Long id){
+        log.info("fetching account: " + id);
+        FullAccountDetails fullAccount = accountRepository.getAccountDetails(id).orElseThrow(() -> new NoDataFoundException("Account not found"));
+        return new FullAccountDetailsResponse(fullAccount.getId(), fullAccount.getFirstName(), fullAccount.getSurname(), fullAccount.getBalance(), getAccountTransaction(fullAccount.getId()));
+    }
+
     public List getAccountTransaction(Long accountId){
-        return this.getAccountFromId(accountId).getTransactions();
+        return this.transactionService.getTransactionByAccount(accountId);
     }
 
     public Account update(Account account){

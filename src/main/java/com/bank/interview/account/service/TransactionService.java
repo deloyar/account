@@ -21,7 +21,7 @@ public class TransactionService {
     }
 
     public List getTransactionByAccount(Long accountId){
-        return accountService.getAccountFromId(accountId).getTransactions();
+        return (List) transactionRepository.findAll();
     }
 
     public Transaction createTransaction(Long accountId, BigDecimal initialCredit) {

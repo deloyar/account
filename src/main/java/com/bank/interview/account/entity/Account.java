@@ -16,8 +16,6 @@ public class Account {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Transaction> transactions;
 
     public Account(){}
     public Account(Customer customer) {
@@ -46,14 +44,6 @@ public class Account {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
     }
 
 

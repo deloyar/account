@@ -1,9 +1,6 @@
 package com.bank.interview.account.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -12,6 +9,7 @@ public class Customer {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @NotBlank(message = "Firstname is mandatory")
+    @Column(name = "FIRSTNAME")
     private String firstName;
     private String surname;
 

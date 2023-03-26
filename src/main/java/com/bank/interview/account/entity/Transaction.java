@@ -1,5 +1,6 @@
 package com.bank.interview.account.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -12,7 +13,7 @@ public class Transaction {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private BigDecimal amount;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
